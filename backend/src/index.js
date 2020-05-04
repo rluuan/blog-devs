@@ -3,8 +3,10 @@ const moogose = require('mongoose')
 
 const app = express()
 
+moogose.set('useCreateIndex', true)
 moogose.connect('mongodb://localhost:27017/App', {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
 
 app.use(express.json())

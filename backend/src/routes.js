@@ -4,19 +4,24 @@ const User = require("./models/User")
 
 routes.post('/user', async (req, res) => {
 
-    const name = 'Rodrigo'
-    const username = 'Luan'
-    const password = '12345'
-    const email = 'rodrigoluanx@gmail.com'
+    const { email: email, password } = req.headers
 
-    const user = await User.create({
-        name,
-        username,
-        password,
-        email
-    })
+    try {
 
-    return res.json({done: 'feito'})
+        const user = await User.create({
+            password,
+            email
+        })
+        return res.json({done: 'OK'})
+    } catch (error) {
+
+        console.log(`failure in the process to create the user in the database`)
+        return res.json({done: 'FAIL'})
+    }
+
+    
+
+    
 })
 
 module.exports = routes
