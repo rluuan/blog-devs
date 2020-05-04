@@ -1,27 +1,14 @@
 const routes = require('express').Router()
+const { Joi, celebrate, Segments } = require('celebrate')
 
-const User = require("./models/User")
 
-routes.post('/user', async (req, res) => {
+const UserController = require('./controllers/UserController')
 
-    const { email: email, password } = req.headers
-
-    try {
-
-        const user = await User.create({
-            password,
-            email
-        })
-        return res.json({done: 'OK'})
-    } catch (error) {
-
-        console.log(`failure in the process to create the user in the database`)
-        return res.json({done: 'FAIL'})
-    }
-
-    
-
-    
-})
+routes.post('/user', celebrate({
+    [Segments.HEADERS]: Joi.object().keys({
+        email: Joi.string().required(),
+        password: Joi.string().required().min(8)
+    }).unknown()
+}), UserController.create)
 
 module.exports = routes
