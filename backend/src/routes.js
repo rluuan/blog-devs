@@ -4,6 +4,7 @@ const { Joi, celebrate, Segments } = require('celebrate')
 
 const UserController = require('./controllers/UserController')
 const ArticleController = require('./controllers/ArticleController')
+const LanguageController = require('./controllers/LanguageController')
 
 /* 
     Handle Users
@@ -25,6 +26,12 @@ routes.post('/user', celebrate({
 
 routes.get('/article', ArticleController.index)
 routes.post('/article', ArticleController.create)
+
+/* 
+    Handle Language
+*/
+routes.get('/language', LanguageController.index)
+routes.post('/language', LanguageController.create)
 
 
 module.exports = routes
