@@ -6,7 +6,7 @@ module.exports = {
         const { page = 1 } = req.query
 
         const user = await conn('language')
-        .select('name')
+        .select('language.*')
         .orderBy('name')
 
         return res.json(user)

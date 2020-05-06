@@ -3,7 +3,7 @@
 
 
 .Landing_Wrapper {
-  background: url(../../assets/back.jpg) !important;
+  background: url(../../assets/back.jpg) 50% 50% !important;
   min-height: 100vh;
 }
 .Landing_Content {
