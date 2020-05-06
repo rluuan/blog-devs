@@ -9,9 +9,7 @@ module.exports = {
 
         const user = await conn('article')
         .select('article.*')
-        .where(function() {
-            this.where('title', 'like', `%${title}%`)
-        })  
+        .where('title', 'like', `%${title}%`)
         .limit(5)
         .offset((page - 1) * 5)
 
