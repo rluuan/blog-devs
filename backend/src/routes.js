@@ -3,7 +3,13 @@ const { Joi, celebrate, Segments } = require('celebrate')
 
 
 const UserController = require('./controllers/UserController')
+const ArticleController = require('./controllers/ArticleController')
 
+/* 
+    Handle Users
+*/
+
+routes.get('/user', UserController.index)
 routes.post('/user', celebrate({
     [Segments.BODY]: Joi.object().keys({
         name: Joi.string().required(),
@@ -13,6 +19,12 @@ routes.post('/user', celebrate({
     }).unknown()
 }), UserController.create)
 
-routes.get('/user', UserController.index)
+/* 
+    Handle Articles
+*/
+
+routes.get('/article', ArticleController.index)
+routes.post('/article', ArticleController.create)
+
 
 module.exports = routes
