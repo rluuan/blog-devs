@@ -1,15 +1,16 @@
+import Knex from 'knex';
 
-exports.up = function (knex) {
+export async function up(knex: Knex): Promise<any> {
     return knex.schema.createTable('User', function (table) {
         table.increments().primary();
         table.string('name').notNullable()
         table.string('username').notNullable()
         table.string('password').notNullable()
         table.string('email').notNullable()
-        table.datetime('createAt')
+        table.dateTime('createAt')
     })
 };
 
-exports.down = function (knex) {
+export async function down(knex: Knex): Promise<any> {
     return knex.schema.dropTable('User')
 };

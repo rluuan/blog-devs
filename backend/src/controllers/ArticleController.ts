@@ -1,11 +1,27 @@
+import { Request, Response } from 'express'
 const conn = require('../database/connection')
+
+
 const test = true
+
+interface IRequestQuery {
+    title?: string,
+    page?: number
+}
+
+interface IRequestBody {
+    userId: number,
+    languageId: number,
+    title: string,
+    description: string
+}
+
 
 module.exports = {
 
-    async index(req, res) {
+    async index(req: Request, res: Response) {
 
-        const { title = '', page = 1 } = req.query
+        let { title , page = 1 }: IRequestQuery = req.query;
 
         const user = await conn('article')
         .select('article.*')
@@ -16,9 +32,9 @@ module.exports = {
         return res.json(user)
     },
 
-    async create(req, res) {
+    async create(req: Request, res: Response) {
         
-        const { userId, languageId, title, description } = req.body
+        const { userId, languageId, title, description }: IRequestBody = req.body
 
         const user = await conn('user')
         .select('user.id')

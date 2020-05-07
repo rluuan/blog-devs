@@ -1,5 +1,5 @@
 const routes = require('express').Router()
-const { Joi, celebrate, Segments } = require('celebrate')
+import { Joi, celebrate, Segments } from 'celebrate'
 
 
 const UserController = require('./controllers/UserController')
@@ -32,6 +32,7 @@ routes.post('/article', ArticleController.create)
 */
 routes.get('/language', LanguageController.index)
 routes.post('/language', LanguageController.create)
+
 
 
 module.exports = routes

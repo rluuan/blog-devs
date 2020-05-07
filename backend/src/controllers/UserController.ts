@@ -1,9 +1,14 @@
 const conn = require('../database/connection')
+import { Request, Response } from 'express'
+
+interface IRequestQuery {
+    page?: number
+}
 
 module.exports = {
 
-    async index(req, res) {
-        const { page = 1 } = req.query
+    async index(req: Request, res: Response) {
+        const { page = 1 }:IRequestQuery =  req.query
 
         const [count] = await conn('User')
         .count()
@@ -18,7 +23,7 @@ module.exports = {
         return res.json(user)
     },
 
-    async create(req, res) {
+    async create(req: Request, res: Response) {
 
         const {name, username, password, email} = req.body
         const createAt = Date.now()

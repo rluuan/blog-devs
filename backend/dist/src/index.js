@@ -1,0 +1,11 @@
+"use strict";
+var express = require('express');
+var errors = require('celebrate').errors;
+var cors = require('cors');
+var app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(errors());
+app.use(require('./routes'));
+app.listen(3331);

@@ -1,8 +1,9 @@
 const conn = require('../database/connection')
+import { Request, Response } from 'express'
 
 module.exports = {
 
-    async index(req, res) {
+    async index(req: Request, res: Response) {
         const { page = 1 } = req.query
 
         const user = await conn('language')
@@ -12,7 +13,7 @@ module.exports = {
         return res.json(user)
     },
 
-    async create(req, res) {
+    async create(req: Request, res: Response) {
 
         const { name } = req.headers
     
